@@ -11,6 +11,16 @@ let baseUrl = "https://devapi.plunes.com/v4"
 // let baseUrl = "http://localhost:5000"
 // let baseUrl = "http://3.6.212.85/v4"
 
+export const updateUserServiceData = (data) => async dispatch => {
+  let token = localStorage.getItem('token');
+  return await axios.patch(baseUrl, '/analytics/updatePriceVariance', data, { 'headers': { 'Authorization': token } })
+                    .then((res) => {
+                      if(res.status === 200){
+                        console.log(res.data)
+                      }
+                    })
+}
+
 export const getUserCatalogue = () => async dispatch => {
   let token = localStorage.getItem('token');
   return await axios.get(baseUrl + '/analytics/getServices', { 'headers': { 'Authorization': token } })
